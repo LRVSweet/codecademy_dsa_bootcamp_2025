@@ -1,4 +1,4 @@
-#include <bits/stdc++.h>
+#include <iostream>
 using namespace std;
 
 int main()
@@ -22,7 +22,7 @@ int main()
             continue;
         }
 
-        int space_count = max_spaces - (star_count - 1);
+        int space_count = max_spaces - (star_count / 2);
         
         for (int i = 0; i < space_count; i++)
         {
