@@ -13,17 +13,17 @@ vector<vector<char>> Board::empty_board =
 };
 
 
-Board::Board(vector<vector<char>> input_board = Board::empty_board)
+Board::Board(vector<vector<char>> input_board)
 {
     board = input_board;
 }
     
-void Board::storeMove(int horizontal, int vertical, char player)
+void Board::storeMove(int vertical, int horizontal, char player)
 {
     this->board.at(vertical).at(horizontal) = player;
 }
 
-Board Board::makeMove(int horizontal, int vertical, char player)
+Board Board::makeMove(int vertical, int horizontal, char player)
 {
     Board new_board = *this;
     new_board.board.at(vertical).at(horizontal) = player;
@@ -55,7 +55,7 @@ int Board::checkHorizontalComp()
         {
             return 1;
         }
-        else if (matching_char_count == 3 && first_char == 'Y')
+        else if (matching_char_count == 3 && first_char == 'O')
         {
             return 2;
         }
@@ -80,7 +80,7 @@ int Board::checkVerticalComp()
         {
             return 1;
         }
-        else if (first_row_val == 'Y' && second_row_val == 'Y' && third_row_val == 'Y')
+        else if (first_row_val == 'O' && second_row_val == 'O' && third_row_val == 'O')
         {
             return 2;
         }  
@@ -91,48 +91,57 @@ int Board::checkVerticalComp()
 
 int Board::checkDiagonalComp()
 {
-    vector<char> main_diagonal;
-    
-    for (int i = 0; i < this->board.size(); i++)
-    {
-        main_diagonal.push_back(this->board.at(i).at(i));
-    }
-    
-    for (char element : main_diagonal)
-    {
+    char main_diag_top = this->board.at(0).at(0);
+    char center = this->board.at(1).at(1);
+    char main_diag_bottom = this->board.at(2).at(2);
 
+    if (main_diag_top == ' ' || center == ' ' || main_diag_bottom == ' ')
+    {
+        return 0;
     }
+
+    if (main_diag_top == center && center == main_diag_bottom)
+    {
+        if (main_diag_top == 'X') return 1;
+        else return 2;
+    }
+
+    char rising_diag_top = this->board.at(0).at(2);
+    char rising_diag_bottom = this->board.at(2).at(0);
+
+    if (rising_diag_top == ' ' || center == ' ' || rising_diag_bottom == ' ')
+    {
+        return 0;
+    }
+
+    if (rising_diag_top == center && center == rising_diag_bottom)
+    {
+        if (rising_diag_top == 'X') return 1;
+        else return 2;
+    }
+    else return 0;
 }
 
 int Board::checkForCompletion(int moves_elapsed)
 {
-    int result = 0;
-    int empty_slots = 0;
-
-    // --- Step 1: Check for horizontal completions ---
-    for (vector<char> row : this->board)
+    int horizontal_check = this->checkHorizontalComp();
+    if (horizontal_check != 0)
     {
-        char first_char = row.at(0);
-        int matching_char_count = 0;
-        
-        for (char element : row)
-        {
-            if (element == ' ') break;
-            else if (element != first_char) break;
-            else matching_char_count++;
-        }
-
-        if (matching_char_count == 3 && first_char == 'X')
-        {
-            result = 1;
-            return result;
-        }
-        else if (matching_char_count == 3 && first_char == 'Y')
-        {
-            result = 2;
-            return result;
-        }
+        return horizontal_check;
+    }
+    
+    int vertical_check = this->checkVerticalComp();
+    if (vertical_check != 0)
+    {
+        return vertical_check;
     }
 
-    // --- Step 2
+    int diagonal_check = this->checkDiagonalComp();
+    if (diagonal_check != 0)
+    {
+        return diagonal_check;
+    }
+
+    if (moves_elapsed == 9) return 3;
+    else return 0;
 }

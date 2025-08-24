@@ -48,18 +48,18 @@ public:
      * Contructor - Accepts an optional board parameter in the form of a 2-d vector.
      * This parameter defaults to emtpy_board.
      */
-    Board(std::vector<std::vector<char>> input_board);
+    Board(std::vector<std::vector<char>> input_board = empty_board);
     
     /**
      * Return a new Board based on the current board plus the move specified in the parameters.
      * makeMove() does not mutate the current board.
      */
-    Board makeMove(int horizontal, int vertical, char player);
+    Board makeMove(int vertical, int horizontal, char player);
     
     /**
      * Adds the specified move to the current board.
      */
-    void storeMove(int horizontal, int vertical, char player);
+    void storeMove(int vertical, int horizontal, char player);
     
     /**
      * Returns a 2-d vector representing the current board.
