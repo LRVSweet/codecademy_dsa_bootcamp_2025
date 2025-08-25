@@ -1,9 +1,7 @@
-#include <iostream>
-#include <vector>
+#include <bits/stdc++.h>
 
 using namespace std;
 
-// Attention - Did not terminate
 vector<int> searchSort (vector<int> &input_array)
 {
     for (int i = 0; i < input_array.size(); i++)
@@ -72,7 +70,6 @@ vector<int> bubbleSortRecursive (vector<int> input_array, int endIdx)
 */
 
 /*
-// ATTENTION - Complete Implementation
 void insertionSort (vector<int> &input_array)
 {
     vector<int> new_array = {input_array.at(0)};
@@ -100,7 +97,6 @@ void mergeTwoSortedArrays(vector<int> &input_array, int start_index, int mid, in
     }
 }
 
-/*
 vector<int> mergeSort (vector<int> &input_array, int start_index, int end_index)
 {
     // Base case
@@ -116,32 +112,11 @@ vector<int> mergeSort (vector<int> &input_array, int start_index, int end_index)
 
 
 }
-*/
 
 // Helper function for quickSort
-int partition(vector<int> &arr, int startIdx, int endIdx)
+void partition(vector<int> arr, int startIdx, int endIdx)
 {
-    int pivot = arr.at(startIdx);
 
-    int lower_part_index = startIdx;
-    int higher_part_index = endIdx;
-
-    while (lower_part_index < higher_part_index)
-    {
-        while (arr.at(lower_part_index) <= pivot && lower_part_index < endIdx)
-        lower_part_index++;
-
-        while (arr.at(higher_part_index) > pivot && higher_part_index > startIdx)
-        higher_part_index--;
-
-        if (lower_part_index < higher_part_index)
-        swap(arr[lower_part_index], arr[higher_part_index]);
-    }
-
-    // Why does it have to be the higher_part_index that is swapped?
-    swap(arr[startIdx], arr[higher_part_index]);
-
-    return higher_part_index;
 }
 
 void quickSort(vector<int> &arr, int startIdx, int endIdx)
@@ -151,13 +126,14 @@ void quickSort(vector<int> &arr, int startIdx, int endIdx)
 
     int partitionIdx = partition(arr, startIdx, endIdx);
     quickSort(arr, startIdx, partitionIdx - 1);
-    quickSort(arr, partitionIdx + 1, endIdx);
+    quickSort(arr, partitionIdx + 1, endIdx)
 }
 
 int main ()
 {
-    vector<int> input_array = {7, 5, 9, 2};
-    quickSort(input_array, 0, input_array.size() - 1);
+    vector<int> input_array = {7, 5, 0, 2};
+    // searchSort(input_array);
+    bubbleSort(input_array);
 
     cout << "Printing sorted array" << endl;
 
