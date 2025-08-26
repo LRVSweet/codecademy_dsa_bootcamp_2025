@@ -4,31 +4,26 @@
 using namespace std;
 
 // Attention - Did not terminate
-vector<int> searchSort (vector<int> &input_array)
+void selectionSort (vector<int> &input_array)
 {
+    // Defines the boundary of the sorted sublist.
     for (int i = 0; i < input_array.size(); i++)
     {
-        int min_index;
-        int min_value;
-
-        for (int j = i; j < input_array.size(); i++)
+        int min_val = input_array.at(i);
+        int min_index = i;
+        
+        // Finds the smallest element in the unsorted sublist.
+        for (int j = i; j < input_array.size(); j++)
         {
-            if (j == i)
+            if (input_array.at(j) < input_array.at(min_index))
             {
+                min_val = input_array.at(j);
                 min_index = j;
-                min_value = input_array.at(j);
-            }
-            else if (input_array.at(j) < min_value)
-            {
-                min_index = j;
-                min_value = input_array.at(j);
             }
         }
 
-        swap(input_array[0], input_array[min_index]);
+        swap(input_array[i], input_array[min_index]);
     }
-
-    return input_array;
 }
 
 vector<int> bubbleSort (vector<int> &input_array)
@@ -71,21 +66,23 @@ vector<int> bubbleSortRecursive (vector<int> input_array, int endIdx)
 }
 */
 
-/*
-// ATTENTION - Complete Implementation
 void insertionSort (vector<int> &input_array)
 {
-    vector<int> new_array = {input_array.at(0)};
-    input_array.erase(0);
-
-    while (input_array)
+    for (int i = 1; i < input_array.size(); i++)
     {
-
+        for (int j = i; j > 0; j--)
+        {
+            if (input_array.at(j) < input_array.at(j - 1))
+            {
+                swap(input_array[j], input_array[j - 1]);
+            }
+            else
+            {
+                break;
+            }
+        }
     }
-
-
 }
-*/
 
 // Helper function for mergeSort
 void mergeTwoSortedArrays(vector<int> &input_array, int start_index, int mid, int end_index)
@@ -106,12 +103,12 @@ void mergeTwoSortedArrays(vector<int> &input_array, int start_index, int mid, in
         }
     }
 
-    for (i; i<= mid; i++)
+    for (; i<= mid; i++)
     {
         temp_vector.push_back(input_array.at(i));
     }
 
-    for (j; j<= end_index; j++)
+    for (; j<= end_index; j++)
     {
         temp_vector.push_back(input_array.at(j));
     }
@@ -177,7 +174,7 @@ void quickSort(vector<int> &arr, int startIdx, int endIdx)
 int main ()
 {
     vector<int> input_array = {7, 5, 9, 2, 10, 88, 17, -1, 7};
-    mergeSort(input_array, 0, input_array.size() - 1);
+    selectionSort(input_array);
 
     cout << "Printing sorted array" << endl;
 
