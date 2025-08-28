@@ -11,8 +11,8 @@ bool testGetBoard()
     
     // --- Step 1: Arrange ---
     vector<vector<char>> expected_board = {
-        {'X', 'Y', 'X'},
-        {'Y', ' ', 'X'},
+        {'X', 'O', 'X'},
+        {'O', ' ', 'X'},
         {' ', ' ', ' '}
     };
 
@@ -155,9 +155,9 @@ bool testCheckForCompletionHorizontal ()
 
     // --- Step 1: Arrange ---
     vector<vector<char>> input_board = {
-        {' ', 'Y', ' '},
+        {' ', 'O', ' '},
         {'X', 'X', 'X'},
-        {' ', ' ', 'Y'},
+        {' ', ' ', 'O'},
     };
 
     Board test_board(input_board);
@@ -188,9 +188,9 @@ bool testCheckForCompletionVertical ()
 
     // --- Step 1: Arrange ---
     vector<vector<char>> input_board = {
-        {' ', 'Y', ' '},
-        {'X', 'Y', 'X'},
-        {' ', 'Y', ' '},
+        {' ', 'O', ' '},
+        {'X', 'O', 'X'},
+        {' ', 'O', ' '},
     };
 
     Board test_board(input_board);
@@ -221,9 +221,9 @@ bool testCheckForCompletionMainDiagonal ()
 
     // --- Step 1: Arrange ---
     vector<vector<char>> input_board = {
-        {'X', 'Y', ' '},
+        {'X', 'O', ' '},
         {' ', 'X', ' '},
-        {' ', 'Y', 'X'},
+        {' ', 'O', 'X'},
     };
 
     Board test_board(input_board);
@@ -254,9 +254,9 @@ bool testCheckForCompletionRisingDiagonal ()
 
     // --- Step 1: Arrange ---
     vector<vector<char>> input_board = {
-        {'X', ' ', 'Y'},
-        {' ', 'Y', ' '},
-        {'Y', 'X', ' '},
+        {'X', ' ', 'O'},
+        {' ', 'O', ' '},
+        {'O', 'X', ' '},
     };
 
     Board test_board(input_board);
@@ -287,9 +287,9 @@ bool testCheckForCompletionIncomplete ()
 
     // --- Step 1: Arrange ---
     vector<vector<char>> input_board = {
-        {'X', ' ', 'Y'},
+        {'X', ' ', 'O'},
         {' ', ' ', ' '},
-        {'Y', 'X', ' '},
+        {'O', 'X', ' '},
     };
 
     Board test_board(input_board);
@@ -320,9 +320,9 @@ bool testCheckForCompletionDraw ()
 
     // --- Step 1: Arrange ---
     vector<vector<char>> input_board = {
-        {'X', 'Y', 'Y'},
-        {'Y', 'X', 'X'},
-        {'Y', 'X', 'Y'},
+        {'X', 'O', 'O'},
+        {'O', 'X', 'X'},
+        {'O', 'X', 'O'},
     };
 
     Board test_board(input_board);

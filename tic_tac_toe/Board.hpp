@@ -21,7 +21,7 @@ private:
     /**
      * Checks for homogenous non-empty rows.
      * If a homogenous row of 'X' is found, returns 1
-     * If a homogenous row of 'Y' is found, returns 2
+     * If a homogenous row of 'O' is found, returns 2
      * Else, returns 0
      */
     int checkHorizontalComp();
@@ -29,18 +29,26 @@ private:
     /**
      * Checks for homogenous non-empty columns.
      * If a homogenous column of 'X' is found, returns 1
-     * If a homogenous column of 'Y' is found, returns 2
+     * If a homogenous column of 'O' is found, returns 2
      * Else, returns 0
      */
     int checkVerticalComp();
 
     /**
-     * Checks for homogenous non-empty diagonals.
+     * Checks for a homogenous non-empty descending diagonal.
      * If a homogenous diagonal of 'X' is found, returns 1
-     * If a homogenous diagonal of 'Y' is found, returns 2
+     * If a homogenous diagonal of 'O' is found, returns 2
      * Else, returns 0
      */
-    int checkDiagonalComp();
+    int checkDescDiagonalComp();
+
+    /**
+     * Checks for homogenous non-empty ascending diagonal.
+     * If a homogenous diagonal of 'X' is found, returns 1
+     * If a homogenous diagonal of 'O' is found, returns 2
+     * Else, returns 0
+     */
+    int checkAscDiagonalComp();
 
 public:
     

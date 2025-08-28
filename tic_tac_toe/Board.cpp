@@ -89,7 +89,7 @@ int Board::checkVerticalComp()
     return 0;
 }
 
-int Board::checkDiagonalComp()
+int Board::checkDescDiagonalComp()
 {
     char main_diag_top = this->board.at(0).at(0);
     char center = this->board.at(1).at(1);
@@ -106,6 +106,12 @@ int Board::checkDiagonalComp()
         else return 2;
     }
 
+    else return 0;
+}
+
+int Board::checkAscDiagonalComp()
+{
+    char center = this->board.at(1).at(1);
     char rising_diag_top = this->board.at(0).at(2);
     char rising_diag_bottom = this->board.at(2).at(0);
 
@@ -136,10 +142,16 @@ int Board::checkForCompletion(int moves_elapsed)
         return vertical_check;
     }
 
-    int diagonal_check = this->checkDiagonalComp();
-    if (diagonal_check != 0)
+    int desc_diagonal_check = this->checkDescDiagonalComp();
+    if (desc_diagonal_check != 0)
     {
-        return diagonal_check;
+        return desc_diagonal_check;
+    }
+
+    int asc_diagonal_check = this->checkAscDiagonalComp();
+    if (asc_diagonal_check != 0)
+    {
+        return asc_diagonal_check;
     }
 
     if (moves_elapsed == 9) return 3;
